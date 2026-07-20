@@ -60,7 +60,9 @@ A web application for estimating the probability of rolling specific Echo substa
 
 ### Substats Roll Probability
 
-$P(  text{attributes}) = k!   times   prod _{i=0}^{k-1}   text{select   _prob} [i]$
+$$
+P(\text{attributes}) = k! \times \prod_{i=0}^{k-1} \text{select\_prob}[i]
+$$
 
 - `k` = number of selected substats
 - `select _prob [i]` = chance of rolling a specific attribute when `i` substats already exist
@@ -68,7 +70,10 @@ $P(  text{attributes}) = k!   times   prod _{i=0}^{k-1}   text{select   _prob} [
 
 ### Roll Probability With Values
 
-$P(  text{attributes} +   text{values}) = P(  text{attributes})   times   prod _{j=1}^{k}   text{value   _prob} [j]$
+$$
+P(\text{attributes} + \text{values}) =
+P(\text{attributes}) \times \prod_{j=1}^{k} \text{value\_prob}[j]
+$$
 
 - `value _prob [j]` = chance of rolling the selected value for the j-th substat
 

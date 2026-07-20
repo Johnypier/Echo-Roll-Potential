@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Echo Roll Probability</title>
+    <meta name="description"
+        content="How the Echo Roll Probability Calculator works, including formulas, probability tables, and data sources." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rubik:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="./src/styles/main.css" />
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="header-left">
+            <h1 class="title">◆ Echo Roll Probability</h1>
+            <nav class="top-nav" aria-label="Primary navigation">
+                <a href="index.html" class="nav-link">Home</a>
+            </nav>
+        </div>
+        <div class="header-actions">
+            <button id="themeToggle" class="btn icon-btn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+        </div>
+    </header>
+
+    <main class="container docs-container">
+
+        <!-- ======================== OVERVIEW ======================== -->
+        <section class="panel docs-panel">
+            <h2>Overview</h2>
+            <p>
+                We estimate the probability of rolling a specific Echo
+                in Wuthering Waves based on its selected substats and substat values.
+                It does <strong>not</strong> account for main stat rolls, secondary
+                stats (which are fixed by cost), or the Echo set/type itself.
+            </p>
+        </section>
+
+        <!-- ======================== CARD ANATOMY ======================== -->
+        <section class="panel docs-panel">
+            <h2>What each Echo card shows</h2>
+
+            <p>Every Echo card displays the following information:</p>
+
+            <table class="docs-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cost</strong></td>
+                        <td>4, 3, or 1. Determines which main stats and secondary stats are available.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Main Stat</strong></td>
+                        <td>Selected by the user. Not included in the probability calculation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Secondary Stat</strong></td>
+                        <td>Fixed by cost (ATK 150 for 4-cost, ATK 100 for 3-cost, HP 2280 for 1-cost). Not included in
+                            the probability calculation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Substats (up to 5)</strong></td>
+                        <td>Each substat has an attribute and a rolled value. Both are included in the probability
+                            calculation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Substats Roll Probability</strong></td>
+                        <td>The chance of rolling the selected substat <em>attributes</em>, regardless of their values.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Roll Probability With Values</strong></td>
+                        <td>The chance of rolling the selected substat attributes <em>and</em> their specific values.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ======================== SUBSTAT ATTRIBUTE PROBABILITY ======================== -->
+        <section class="panel docs-panel">
+            <h2>Substat attribute probability</h2>
+
+            <p>
+                Each time a new substat is rolled, one attribute is chosen from the
+                remaining available attributes. Because duplicate substats are not
+                allowed, the chance of rolling a specific remaining attribute increases
+                as more substats are already present on the Echo.
+            </p>
+
+            <table class="docs-table">
+                <thead>
+                    <tr>
+                        <th>Current substats on Echo</th>
+                        <th>Chance of rolling one specific attribute</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0 substats</td>
+                        <td>7.6923%</td>
+                    </tr>
+                    <tr>
+                        <td>1 substat</td>
+                        <td>8.3333%</td>
+                    </tr>
+                    <tr>
+                        <td>2 substats</td>
+                        <td>9.0909%</td>
+                    </tr>
+                    <tr>
+                        <td>3 substats</td>
+                        <td>10.0000%</td>
+                    </tr>
+                    <tr>
+                        <td>4 substats</td>
+                        <td>11.1111%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                There are 13 possible substat attributes. We treat the
+                final set of substats as unordered — the order in which they were
+                rolled does not matter.
+            </p>
+        </section>
+
+        <!-- ======================== SUBSTAT VALUE PROBABILITY ======================== -->
+        <section class="panel docs-panel">
+            <h2>Substat value probability</h2>
+
+            <p>
+                After a substat attribute is selected, the game rolls a value for that
+                attribute. Each attribute has its own value table with different
+                probabilities for each possible value.
+            </p>
+
+            <p>
+                For example, CR can roll 6.30%, 6.90%, 7.50%, 8.10%, etc., each with
+                its own probability. We multiply the attribute roll
+                probability by the probability of the selected value.
+            </p>
+
+            <p>
+                When the roll probability with values is extremely small (below
+                0.000001%), the <strong>"Extremely low"</strong> message is displayed
+                instead of a scientific-notation number.
+            </p>
+        </section>
+
+        <!-- ======================== FORMULAS ======================== -->
+        <section class="panel docs-panel">
+            <h2>Formulas</h2>
+
+            <h3>Substats Roll Probability</h3>
+            <p>
+                For an Echo with <strong>k</strong> selected substats:
+            </p>
+            <div class="formula-box">
+                P(attributes) = k! × Π<sub>i=0..k-1</sub> select_prob[i]
+            </div>
+            <p>
+                Where <code>select_prob[i]</code> is the probability of rolling a
+                specific attribute when <code>i</code> substats already exist on the
+                Echo. The <code>k!</code> factor accounts for all possible roll orders
+                that produce the same final set.
+            </p>
+
+            <h3>Roll Probability With Values</h3>
+            <div class="formula-box">
+                P(attributes + values) = P(attributes) × Π<sub>j=1..k</sub> value_prob[j]
+            </div>
+            <p>
+                Where <code>value_prob[j]</code> is the probability of rolling the
+                selected value for the j-th substat attribute.
+            </p>
+        </section>
+
+        <!-- ======================== NO COMBINED PROBABILITY ======================== -->
+        <section class="panel docs-panel">
+            <h2>Why there is no combined probability</h2>
+            <p>
+                Even a single Echo with several specific substats and values can have
+                a very low probability. Multiplying multiple Echo probabilities together
+                produces numbers that are technically correct but not useful for most
+                users. Because of that, each Echo card shows its own roll probabilities
+                separately.
+            </p>
+        </section>
+
+        <!-- ======================== CONSTRAINTS ======================== -->
+        <section class="panel docs-panel">
+            <h2>Constraints</h2>
+            <table class="docs-table">
+                <thead>
+                    <tr>
+                        <th>Constraint</th>
+                        <th>Limit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Maximum Echo cards</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Maximum total cost</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>Maximum substats per Echo</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Duplicate substats on one Echo</td>
+                        <td>Not allowed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ======================== DATA SOURCES ======================== -->
+        <section class="panel docs-panel">
+            <h2>Probability data sources</h2>
+            <p>
+                The probability tables used in the calculations are based on official data and community research.
+            </p>
+
+            <div class="sources-grid">
+                <article class="source-card">
+                    <h3>Source 1</h3>
+                    <p>
+                        <a class="link" href="https://wutheringwaves.fandom.com/wiki/Echo/Stats">Wuthering Waves
+                            Wiki - Echo Stats</a>
+                    </p>
+                </article>
+
+                <article class="source-card">
+                    <h3>Source 2</h3>
+                    <p>
+                        <a class="link"
+                            href="https://wutheringwaves.kurogames.com/p/language_ko/product_info.html">Official
+                            Probability Tables</a>
+                    </p>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>Echo Roll Probability © 2026-present Johnpier</p>
+    </footer>
+
+    <script type="module">
+        import { initTheme } from "./src/scripts/theme.js";
+        initTheme();
+    </script>
+
+</body>
+
+</html>

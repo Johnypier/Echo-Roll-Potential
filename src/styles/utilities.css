@@ -1,0 +1,147 @@
+.loader {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--overlay);
+    backdrop-filter: blur(4px);
+
+    z-index: 100;
+}
+
+.loader.active {
+    display: flex;
+}
+
+.spinner {
+    width: 52px;
+    height: 52px;
+
+    border: 5px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+
+    animation: spin 0.8s linear infinite;
+}
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.25rem;
+
+    transform: translate(-50%, 20px);
+
+    background: var(--panel);
+    color: var(--text);
+
+    border: 1px solid var(--danger);
+    box-shadow: var(--shadow);
+
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius);
+
+    opacity: 0;
+    pointer-events: none;
+
+    z-index: 200;
+
+    transition:
+        opacity var(--transition),
+        transform var(--transition);
+
+    max-width: min(92vw, 460px);
+    text-align: center;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-4px);
+    }
+
+    75% {
+        transform: translateX(4px);
+    }
+}
+
+@media (max-width: 700px) {
+    .app-header {
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .control-group {
+        justify-content: space-between;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 420px) {
+    .substat-item {
+        grid-template-columns: minmax(84px, 1fr) minmax(96px, 0.8fr) 34px;
+        gap: 0.35rem;
+    }
+
+    .remove-substat {
+        width: 34px;
+        min-width: 34px;
+        height: 34px;
+    }
+
+    .card-prob {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .card-prob strong {
+        text-align: left;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}

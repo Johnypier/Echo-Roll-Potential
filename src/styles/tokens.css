@@ -1,0 +1,68 @@
+:root {
+    --radius: 14px;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --font-body: "Rubik", system-ui, sans-serif;
+    --font-title: "Orbitron", sans-serif;
+}
+
+[data-theme="dark"] {
+    --bg: #0e1016;
+    --bg-2: #171a24;
+
+    --panel: #1c2030;
+    --panel-2: #232838;
+
+    --field: #121622;
+    --field-hover: #1a2030;
+    --field-border: #343b55;
+
+    --text: #e8ecf4;
+    --text-dim: #9aa4bd;
+
+    --accent: #6c8cff;
+    --accent-2: #b06cff;
+
+    --accent-soft: rgba(108, 140, 255, 0.16);
+    --accent-ring: rgba(108, 140, 255, 0.3);
+    --accent-2-soft: rgba(176, 108, 255, 0.2);
+
+    --good: #4ade80;
+    --danger: #ff5c72;
+
+    --border: #2c3247;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+
+    --glass-bg: rgba(14, 16, 22, 0.82);
+    --overlay: rgba(14, 16, 22, 0.72);
+}
+
+[data-theme="light"] {
+    --bg: #f2f4fb;
+    --bg-2: #e6eaf6;
+
+    --panel: #ffffff;
+    --panel-2: #f4f6fd;
+
+    --field: #f8faff;
+    --field-hover: #eef2ff;
+    --field-border: #c8d0e8;
+
+    --text: #1a1e2c;
+    --text-dim: #5a6480;
+
+    --accent: #4a66e0;
+    --accent-2: #9a4ae0;
+
+    --accent-soft: rgba(74, 102, 224, 0.14);
+    --accent-ring: rgba(74, 102, 224, 0.25);
+    --accent-2-soft: rgba(154, 74, 224, 0.16);
+
+    --good: #18a558;
+    --danger: #e0364c;
+
+    --border: #d6dbec;
+    --shadow: 0 8px 26px rgba(60, 70, 110, 0.15);
+
+    --glass-bg: rgba(242, 244, 251, 0.86);
+    --overlay: rgba(242, 244, 251, 0.72);
+}

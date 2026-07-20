@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Echo Roll Probability</title>
+    <meta name="description" content="Wuthering Waves Echo build probability calculator with export to image." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rubik:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="./src/styles/main.css" />
+    <!-- html2canvas for image export -->
+    <script src="./src/scripts/html2canvas.min.js"></script>
+    <script type="module" src="./src/scripts/main.js"></script>
+</head>
+
+<body>
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <output id="toast" class="toast" aria-live="polite"></output>
+
+
+    <header class="app-header">
+        <div class="header-left">
+            <h1 class="title">◆ Echo Roll Probability</h1>
+
+            <nav class="top-nav" aria-label="Primary navigation">
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
+        </div>
+
+        <div class="header-actions">
+            <button id="themeToggle" class="btn icon-btn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="controls panel">
+            <div class="control-group">
+                <button id="addEchoBtn" class="btn primary">+ Add Echo</button>
+                <span id="costInfo" class="cost-info">Total Cost: 0 / 12</span>
+            </div>
+            <div class="control-group">
+                <button id="exportBtn" class="btn accent">⬇ Export as Image</button>
+            </div>
+        </section>
+
+        <section id="cards" class="cards-grid" aria-live="polite"></section>
+
+        <p id="emptyHint" class="empty-hint">Click <strong>“+ Add Echo”</strong> to begin building.</p>
+    </main>
+
+    <footer class="app-footer">
+        <p>Echo Roll Probability © 2026-present Johnpier</p>
+    </footer>
+
+    <!-- Card template -->
+    <template id="cardTemplate">
+        <article class="echo-card" tabindex="0">
+            <button class="btn remove-btn" title="Remove echo">✕</button>
+            <div class="card-head">
+                <label class="field">
+                    <span>Cost</span>
+                    <select class="cost-select">
+                        <option value="4">4 Cost</option>
+                        <option value="3">3 Cost</option>
+                        <option value="1">1 Cost</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="stat-row main-stat">
+                <label class="field grow">
+                    <span>Main Stat</span>
+                    <select class="main-select"></select>
+                </label>
+                <div class="stat-value main-value">—</div>
+            </div>
+
+            <div class="stat-row secondary-stat">
+                <span class="stat-name secondary-name">—</span>
+                <span class="stat-value secondary-value">—</span>
+                <span class="fixed-badge">fixed</span>
+            </div>
+
+            <div class="substats">
+                <div class="substats-head">
+                    <span>Substats</span>
+                    <span class="sub-count">0 / 5</span>
+                </div>
+                <div class="substat-list"></div>
+                <button class="btn small add-substat">+ Substat</button>
+            </div>
+            <div class="prob-stack">
+                <div class="card-prob">
+                    <span>Substats Roll Probability</span>
+                    <strong class="substat-prob-value">—</strong>
+                </div>
+
+                <div class="card-prob">
+                    <span>Roll Probability With Values</span>
+                    <strong class="roll-prob-value">—</strong>
+                </div>
+            </div>
+        </article>
+    </template>
+
+    <!-- Substat row template -->
+    <template id="substatTemplate">
+        <div class="substat-item">
+            <select class="substat-attr" aria-label="Substat attribute"></select>
+            <select class="substat-val" aria-label="Substat value"></select>
+            <button class="btn tiny remove-substat" title="Remove substat">✕</button>
+        </div>
+    </template>
+</body>
+
+</html>

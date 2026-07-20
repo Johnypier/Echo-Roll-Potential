@@ -1,0 +1,118 @@
+.export-wrap {
+    position: fixed;
+    left: -9999px;
+    top: 0;
+
+    width: 900px;
+    padding: 2rem;
+
+    background: var(--bg);
+    color: var(--text);
+}
+
+.export-header {
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+}
+
+.export-title {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    line-height: 1.15;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+    margin: 0;
+}
+
+.export-subtitle {
+    margin-top: 0.45rem;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+}
+
+.export-header::after {
+    content: "";
+    display: block;
+    width: 180px;
+    height: 3px;
+    margin: 1rem auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+.export-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.export-card {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.export-card-title {
+    font-family: var(--font-title);
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+}
+
+.export-stat-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: 0.55rem 0;
+    border-bottom: 1px dashed var(--border);
+}
+
+.export-stat-row span {
+    color: var(--text-dim);
+}
+
+.export-stat-row strong {
+    color: var(--text);
+    text-align: right;
+}
+
+.export-subhead {
+    margin-top: 0.85rem;
+    margin-bottom: 0.45rem;
+
+    color: var(--text-dim);
+
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.export-substats {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.export-substat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+
+    padding: 0.45rem 0.6rem;
+
+    border-radius: 10px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+}
+
+.export-substat-row span {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.export-substat-row strong {
+    color: var(--text);
+}
+
+.export-substat-row.muted {
+    color: var(--text-dim);
+}

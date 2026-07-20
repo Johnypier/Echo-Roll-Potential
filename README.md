@@ -1,24 +1,24 @@
 # Echo Roll Probability
 
-A single-page web application for estimating the probability of rolling specific Echo substats and values in  **Wuthering Waves**. Users can create up to 5 Echo cards (max 12 total cost), select main stats, substats, and substat values, and see the estimated roll probability for each Echo in real time.
+A web application for estimating the probability of rolling specific Echo substats and values in  **Wuthering Waves**. Users can create up to 5 Echo cards (max 12 total cost), select main stats, substats, and substat values, and see the estimated roll probability for each Echo in real time.
 
 ---
 
 ## Features
 
-- *Up to 5 Echo cards* * with a hard 12-cost limit
-- *Main stat* * selection per cost tier (4 / 3 / 1)
-- *Fixed secondary stat* * displayed automatically
-- *Up to 5 substats* * per Echo with attribute and value selection
-- *Two probability values* * per card:
+- **Up to 5 Echo cards** with a hard 12-cost limit
+- **Main stat** selection per cost tier (4 / 3 / 1)
+- **Fixed secondary stat** displayed automatically
+- **Up to 5 substats** per Echo with attribute and value selection
+- **Two probability values** per card:
   - Substats Roll Probability (attributes only)
   - Roll Probability With Values (attributes + values)
-- *"Extremely low"* * label for probabilities too small to display meaningfully
-- *Session caching* * — refreshing the page preserves your current build
-- *Export to PNG* * — captures all cards and probabilities as a single image
-- *Light / Dark theme* * with persistent preference
-- *Responsive* * — works on mobile, tablet, and desktop
-- *About page* * with formulas, probability tables, and data sources
+- **"Extremely low"** label for probabilities too small to display meaningfully
+- **Session caching** — refreshing the page preserves your current build
+- **Export to PNG** — captures all cards and probabilities as a single image
+- **Light / Dark theme** with persistent preference
+- **Responsive** — works on mobile, tablet, and desktop
+- **About page** with formulas, probability tables, and data sources
 
 ---
 
@@ -85,11 +85,11 @@ $P(  text{attributes} +   text{values}) = P(  text{attributes})   times   prod _
 
 ## Tech stack
 
-- *HTML5* * — semantic markup, `<template>` elements
-- *CSS3* * — custom properties, grid, flexbox, animations
-- *Vanilla JavaScript (ES modules)* * — no frameworks or build tools
-- *html2canvas* * (CDN) — PNG export
-- *Google Fonts* * — Orbitron (titles), Rubik (body)
+- **HTML5** — semantic markup, `<template>` elements
+- **CSS3** — custom properties, grid, flexbox, animations
+- **Vanilla JavaScript (ES modules)** — no frameworks or build tools
+- **html2canvas** (CDN) — PNG export
+- **Google Fonts** — Orbitron (titles), Rubik (body)
 
 ---
 

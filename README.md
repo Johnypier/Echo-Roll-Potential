@@ -2,6 +2,8 @@
 
 A web application for estimating the probability of rolling specific Echo substats and values in  **Wuthering Waves**. Users can create up to 5 Echo cards (max 12 total cost), select main stats, substats, and substat values, and see the estimated roll probability for each Echo in real time.
 
+**Access:** [GitHub Page](https://johnypier.github.io/Echo-Roll-Potential/index.html)
+
 ---
 
 ## Features

@@ -1,40 +1,47 @@
-import { SELECT_PROB_BY_COUNT, SUBSTAT_VALUES } from "./data.js";
-import { factorial } from "./format.js";
+import { SUBSTAT_VALUES } from "./data.js";
 
-export const computeSubstatAttributeProbability = (substats) => {
-    const chosen = substats.filter((s) => s.attr);
+const TOTAL_POOL = 13;
+const MAX_SLOTS = 5;
 
-    if (chosen.length === 0) return null;
+/**
+ * @param {Array} substats - Array of { attr, value }
+ * @param {"finished"|"exact"} mode - "finished" (+25 echo, 5 slots) or "exact" (k slots)
+ */
+export const computeSubstatAttributeProbability = (
+  substats,
+  mode = "exact",
+) => {
+  const chosen = substats.filter((s) => s.attr);
+  const k = chosen.length;
 
-    let p = 1;
+  if (k === 0 || k > MAX_SLOTS) return null;
 
-    for (let i = 0; i < chosen.length; i++) {
-        p *= SELECT_PROB_BY_COUNT[i];
-    }
+  // "finished" assumes 5 total rolls; "exact" assumes exactly k rolls
+  const totalSlots = mode === "finished" ? MAX_SLOTS : k;
 
-    // Order-independent result.
-    // Example: CR + CD is counted regardless of which one appeared first.
-    p *= factorial(chosen.length);
+  let p = 1;
+  for (let i = 0; i < k; i++) {
+    p *= (totalSlots - i) / (TOTAL_POOL - i);
+  }
 
-    return p;
+  return p;
 };
 
-export const computeSubstatValueProbability = (substats) => {
-    const chosen = substats.filter((s) => s.attr);
+export const computeSubstatValueProbability = (substats, mode = "exact") => {
+  const chosen = substats.filter((s) => s.attr);
 
-    if (chosen.length === 0) return null;
+  if (chosen.length === 0 || chosen.length > MAX_SLOTS) return null;
+  if (chosen.some((s) => !s.value)) return null;
 
-    // If the attribute is selected but value is missing, do not calculate.
-    if (chosen.some((s) => !s.value)) return null;
+  let p = computeSubstatAttributeProbability(chosen, mode);
+  if (p === null) return null;
 
-    let p = computeSubstatAttributeProbability(chosen);
+  for (const s of chosen) {
+    const table = SUBSTAT_VALUES[s.attr] || [];
+    const entry = table.find((e) => e.value === s.value);
 
-    for (const s of chosen) {
-        const table = SUBSTAT_VALUES[s.attr] || [];
-        const entry = table.find((e) => e.value === s.value);
+    p *= entry ? entry.p : 0;
+  }
 
-        p *= entry ? entry.p : 0;
-    }
-
-    return p;
+  return p;
 };

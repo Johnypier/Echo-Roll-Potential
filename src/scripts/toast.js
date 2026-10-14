@@ -1,22 +1,22 @@
 import { $ } from "./dom.js";
 
 export const createToast = () => {
-    const toast = $("#toast");
-    let timer = null;
+  const toast = $("#toast");
+  let timer = null;
 
-    return (message) => {
-        if (!toast) {
-            alert(message);
-            return;
-        }
+  return (message) => {
+    if (!toast) {
+      alert(message);
+      return;
+    }
 
-        clearTimeout(timer);
+    clearTimeout(timer);
 
-        toast.textContent = message;
-        toast.classList.add("show");
+    toast.textContent = message;
+    toast.classList.add("show");
 
-        timer = setTimeout(() => {
-            toast.classList.remove("show");
-        }, 2800);
-    };
+    timer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2800);
+  };
 };

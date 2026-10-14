@@ -92,9 +92,9 @@ $$P(\text{attributes}) = \prod_{i=0}^{k-1} \frac{N - i}{13 - i}$$
 
 Once attributes are rolled, their values are rolled independently from attribute-specific discrete distribution tables:
 
-$$P(\text{attributes} + \text{values}) = P(\text{attributes}) \times \prod_{j=1}^{k} \text{value\_prob}[j]$$
+$$P(\text{attributes} + \text{values}) = P(\text{attributes}) \times \prod_{j=1}^{k} \text{valueProb}[j]$$
 
-- `value_prob[j]` = probability of rolling that specific tier value for the $j$-th attribute.
+- `valueProb[j]` = probability of rolling that specific tier value for the $j$-th attribute.
 
 ---
 
